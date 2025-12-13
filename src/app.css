@@ -1,0 +1,247 @@
+/* ========================================= */
+/* GLOBAL */
+/* ========================================= */
+body {
+  margin: 0;
+  background: linear-gradient(135deg, #e3f6e6, #d6f5df);
+  font-family: "Poppins", sans-serif;
+  color: #1f2937;
+}
+
+/* ========================================= */
+/* WELCOME SCREEN */
+/* ========================================= */
+.welcome-container {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.welcome-card {
+  background: #ffffff;
+  padding: 30px 20px;
+  width: 100%;
+  max-width: 420px;
+  border-radius: 20px;
+  text-align: center;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+  animation: fadeIn 0.3s ease;
+}
+
+/* ========================================= */
+/* BUTTON */
+/* ========================================= */
+.start-btn,
+.btn-secondary {
+  margin-top: 15px;
+  padding: 14px;
+  width: 100%;
+  border-radius: 999px;
+  border: none;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.start-btn {
+  background: #90d8b0;
+  color: #0b3d2e;
+}
+
+.start-btn:hover {
+  background: #72c79a;
+  transform: scale(1.03);
+}
+
+.btn-secondary {
+  background: #cfd8e3;
+  color: #334155;
+}
+
+.btn-secondary:hover {
+  background: #b9c4d4;
+}
+
+/* ========================================= */
+/* CHAT PAGE */
+/* ========================================= */
+.chat-container {
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 16px;
+  background: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  max-height: 100vh;
+  box-sizing: border-box;
+}
+
+/* ========================================= */
+/* HEADER */
+/* ========================================= */
+.chat-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 12px;
+}
+
+.chat-header h1 {
+  margin: 0;
+  font-size: 1.3rem;
+  color: #1f2937;
+}
+
+/* ========================================= */
+/* CLOSE BUTTON */
+/* ========================================= */
+.close-btn {
+  width: 36px;
+  height: 36px;
+  background: #e3f2ea;
+  color: #1f2937;
+  border: none;
+  border-radius: 10px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.close-btn:hover {
+  background: #c7e6d4;
+}
+
+/* ========================================= */
+/* CHAT BOX */
+/* ========================================= */
+.chat-box {
+  flex: 1;
+  background: #f6f8f7;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 12px;
+  overflow-y: auto;
+
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-height: 0;
+}
+
+.message {
+  padding: 10px;
+  border-radius: 10px;
+  max-width: 85%;
+  font-size: 0.9rem;
+  animation: fadeInUp 0.2s ease;
+  word-break: break-word;
+}
+
+/* pesan user */
+.message.user {
+  background: #bde7cf;
+  margin-left: auto;
+}
+
+/* pesan bot */
+.message.bot {
+  background: #e6f2ed;
+  margin-right: auto;
+}
+
+/* ========================================= */
+/* INPUT AREA */
+/* ========================================= */
+.input-area {
+  display: flex;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.input-area input {
+  flex: 1;
+  padding: 14px;
+  border-radius: 999px;
+  border: 1px solid #cbd5e1;
+  background: #ffffff;
+  color: #1f2937;
+  outline: none;
+  font-size: 1rem;
+}
+
+.input-area button {
+  padding: 14px 18px;
+  border-radius: 999px;
+  background: #90d8b0;
+  color: #0b3d2e;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.input-area button:hover {
+  background: #72c79a;
+}
+
+/* ========================================= */
+/* RESPONSIVE */
+/* ========================================= */
+@media (max-width: 360px) {
+  h1 {
+    font-size: 1.1rem;
+  }
+
+  .chat-container {
+    padding: 10px;
+  }
+
+  .input-area {
+    flex-direction: column;
+  }
+
+  .input-area button {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .message {
+    max-width: 90%;
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .chat-container {
+    max-width: 520px;
+  }
+}
+
+/* ========================================= */
+/* ANIMATIONS */
+/* ========================================= */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
