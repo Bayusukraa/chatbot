@@ -25,12 +25,14 @@ function App() {
     const temp = input;
     setInput("");
 
+    // pesan loading
     setMessages((prev) => [
       ...prev,
       { sender: "bot", text: "Sebentar ya… saya sedang berpikir 🤖" },
     ]);
 
     try {
+      // ✅ FIX: pakai relative path (AMAN di Vercel & lokal)
       const res = await fetch("/api/chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -39,6 +41,7 @@ function App() {
 
       const data = await res.json();
 
+      // ganti pesan loading dengan balasan bot
       setMessages((prev) => [
         ...prev.slice(0, prev.length - 1),
         { sender: "bot", text: data.reply },
@@ -46,7 +49,7 @@ function App() {
     } catch (err) {
       console.error(err);
       setMessages((prev) => [
-        ...prev,
+        ...prev.slice(0, prev.length - 1),
         { sender: "bot", text: "Error menghubungi server 😢" },
       ]);
     }
@@ -68,14 +71,15 @@ function App() {
           <button className="start-btn" onClick={startChat}>
             Mulai Chat
           </button>
-          <button
-  className="start-btn"
-  style={{ background: "#64748b" }}
-  onClick={() => window.location.href = "http://127.0.0.1:5500/index.html"}
->
-  Kembali
-</button>
 
+          {/* ✅ FIX: jangan hardcode localhost */}
+          <button
+            className="start-btn"
+            style={{ background: "#64748b" }}
+            onClick={() => (window.location.href = "https://dashboardsamdbal.vercel.app/")}
+          >
+            Kembali
+          </button>
         </div>
       </div>
     );
@@ -86,19 +90,16 @@ function App() {
   // ============================
   return (
     <div className="chat-container">
-
-      {/* Tombol X kembali ke halaman dashboard */}
-  <div class="chat-header">
-  <h1>Chatbot</h1>
-  <button
-  className="close-btn"
-  onClick={() => window.location.href = "../../index.html"}
->
-    ✖
-</button>
-</div>
-
-      
+      {/* ✅ FIX: className (bukan class) */}
+      <div className="chat-header">
+        <h1>Chatbot</h1>
+        <button
+          className="close-btn"
+          onClick={() => (window.location.href = "/")}
+        >
+          ✖
+        </button>
+      </div>
 
       <div className="chat-box">
         {messages.map((msg, i) => (
