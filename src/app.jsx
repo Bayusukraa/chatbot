@@ -6,7 +6,7 @@ function App() {
   const [messages, setMessages] = useState([
     {
       sender: "bot",
-      text: "Halo! 👋 Ada yang bisa saya bantu hari ini?",
+      text: "Halo! 👋 Selamat datang di Samdbal – Asisten AI Pengelolaan Sampah di Bali! Ada yang bisa saya bantu hari ini?",
     },
   ]);
 
@@ -28,11 +28,10 @@ function App() {
     // pesan loading
     setMessages((prev) => [
       ...prev,
-      { sender: "bot", text: "Sebentar ya… saya sedang berpikir 🤖" },
+      { sender: "bot", text: "Sebentar ya… saya sedang memproses pertanyaanmu 🤖" },
     ]);
 
     try {
-      // ✅ FIX: pakai relative path (AMAN di Vercel & lokal)
       const res = await fetch("/api/chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -50,7 +49,7 @@ function App() {
       console.error(err);
       setMessages((prev) => [
         ...prev.slice(0, prev.length - 1),
-        { sender: "bot", text: "Error menghubungi server 😢" },
+        { sender: "bot", text: "Maaf, ada masalah menghubungi server 😢 Coba lagi nanti ya!" },
       ]);
     }
   };
@@ -62,23 +61,22 @@ function App() {
     return (
       <div className="welcome-container">
         <div className="welcome-card">
-          <h1>Selamat Datang 👋</h1>
+          <h1>Selamat Datang di Samdbal! ♻️</h1>
           <p>
-            Ini adalah chatbot AI yang didukung oleh GROQ.
-            Klik tombol di bawah untuk memulai percakapan.
+            Samdbal adalah asisten AI khusus untuk pengelolaan sampah di Bali.  
+            Tanya apa saja tentang daur ulang, bank sampah, lokasi TPS, tips 3R, atau masalah sampah di pulau Dewata!
           </p>
 
           <button className="start-btn" onClick={startChat}>
-            Mulai Chat
+            Mulai Chat Sekarang
           </button>
 
-          {/* ✅ FIX: jangan hardcode localhost */}
           <button
             className="start-btn"
             style={{ background: "#64748b" }}
             onClick={() => (window.location.href = "https://dashboardsamdbal.vercel.app/")}
           >
-            Kembali
+            Kembali ke Dashboard
           </button>
         </div>
       </div>
@@ -90,9 +88,8 @@ function App() {
   // ============================
   return (
     <div className="chat-container">
-      {/* ✅ FIX: className (bukan class) */}
       <div className="chat-header">
-        <h1>Chatbot</h1>
+        <h1>Samdbal – Asisten Sampah Bali</h1>
         <button
           className="close-btn"
           onClick={() => (window.location.href = "/")}
@@ -112,7 +109,7 @@ function App() {
       <div className="input-area">
         <input
           value={input}
-          placeholder="Ketik pesan di sini..."
+          placeholder="Tanya tentang sampah di Bali (contoh: cara daur ulang plastik)"
           onChange={(e) => setInput(e.target.value)}
           onKeyDown={(e) => e.key === "Enter" && sendMessage()}
         />
